@@ -1,0 +1,60 @@
+/* No YouTube Shorts - Styles
+   Hide Shorts elements immediately before JavaScript runs */
+
+/* 1. Shorts tab in main navigation (left sidebar) */
+ytd-guide-entry-renderer:has(a[title="Shorts"]),
+ytd-mini-guide-entry-renderer:has(a[title="Shorts"]),
+ytd-guide-entry-renderer:has(a[href="/shorts"]),
+ytd-mini-guide-entry-renderer:has(a[href="/shorts"]) {
+  display: none !important;
+}
+
+/* 2. Shorts tab on channel pages */
+yt-tab-shape[tab-title="Shorts"],
+tp-yt-paper-tab:has([title="Shorts"]),
+yt-tab-group-shape yt-tab-shape:has(a[href*="/shorts"]) {
+  display: none !important;
+}
+
+/* 3. Shorts sections in subscription/home feed */
+ytd-rich-section-renderer:has(ytd-reel-shelf-renderer),
+ytd-rich-section-renderer:has([is-shorts]),
+ytd-reel-shelf-renderer,
+ytd-rich-shelf-renderer[is-shorts],
+ytd-rich-shelf-renderer:has([overlay-style="SHORTS"]) {
+  display: none !important;
+}
+
+/* 4. Shorts in recommended sidebar (watch page) */
+ytd-compact-video-renderer:has(a[href*="/shorts/"]),
+ytd-reel-item-renderer {
+  display: none !important;
+}
+
+/* 5. General Shorts elements */
+a[href="/shorts"],
+ytd-guide-section-renderer:has(a[title="Shorts"]) {
+  display: none !important;
+}
+
+/* Hide Shorts badge/overlay indicators */
+ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"] {
+  display: none !important;
+}
+
+/* Hide Shorts from search results */
+ytd-video-renderer:has(a[href*="/shorts/"]),
+ytd-grid-video-renderer:has(a[href*="/shorts/"]) {
+  display: none !important;
+}
+
+/* Hide Shorts shelf in channel page */
+ytd-reel-shelf-renderer,
+ytd-channel-featured-content-renderer:has(ytd-reel-shelf-renderer) {
+  display: none !important;
+}
+
+/* Hide "Shorts remixing this video" section */
+ytd-reel-shelf-renderer[is-remix-shelf] {
+  display: none !important;
+}

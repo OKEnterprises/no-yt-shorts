@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96">
+  <!-- Background circle -->
+  <circle cx="48" cy="48" r="44" fill="#ff0000"/>
+
+  <!-- Shorts icon (simplified) -->
+  <rect x="28" y="24" width="40" height="48" rx="4" fill="white"/>
+  <rect x="36" y="32" width="24" height="4" fill="#ff0000"/>
+  <rect x="36" y="40" width="24" height="4" fill="#ff0000"/>
+  <rect x="36" y="48" width="16" height="4" fill="#ff0000"/>
+
+  <!-- Strike-through line (no/block symbol) -->
+  <line x1="16" y1="80" x2="80" y2="16" stroke="#ff0000" stroke-width="8" stroke-linecap="round"/>
+  <line x1="16" y1="80" x2="80" y2="16" stroke="white" stroke-width="4" stroke-linecap="round"/>
+</svg>

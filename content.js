@@ -13,24 +13,14 @@
     // Shorts section in navigation
     'ytd-guide-section-renderer:has(a[title="Shorts"])',
 
-    // 2. Shorts tab on channel pages
-    'yt-tab-shape[tab-title="Shorts"]',
-    'tp-yt-paper-tab:has([title="Shorts"])',
-    'yt-tab-group-shape yt-tab-shape:has(a[href*="/shorts"])',
-
-    // 3. Shorts in subscription feed
-    'ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts])',
-    'ytd-rich-section-renderer:has([is-shorts])',
+    // 2. Shorts shelves in subscription/home feed — target shelves directly, NOT parent sections
     'ytd-reel-shelf-renderer',
     'ytd-rich-shelf-renderer[is-shorts]',
+    'ytd-rich-shelf-renderer:has([overlay-style="SHORTS"])',
 
-    // 4. Shorts in recommended sidebar (watch page)
+    // 3. Shorts in recommended sidebar (watch page)
     'ytd-compact-video-renderer:has(a[href*="/shorts/"])',
     'ytd-reel-item-renderer',
-
-    // Shorts shelf on home page
-    'ytd-rich-section-renderer:has(ytd-reel-shelf-renderer)',
-    'ytd-rich-shelf-renderer:has([overlay-style="SHORTS"])',
 
     // General Shorts links and sections
     'a[href="/shorts"]',
@@ -68,19 +58,14 @@
       return element.closest('ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer');
     }
 
-    // For shelf renderers, remove the whole section
-    if (selector.includes('shelf') || selector.includes('section')) {
-      return element.closest('ytd-rich-section-renderer, ytd-reel-shelf-renderer, ytd-rich-shelf-renderer');
+    // For shelf renderers, remove the shelf itself — NOT the parent section
+    if (selector.includes('shelf')) {
+      return element.closest('ytd-reel-shelf-renderer, ytd-rich-shelf-renderer');
     }
 
     // For compact videos (sidebar), remove the video entry
     if (selector.includes('compact-video')) {
       return element.closest('ytd-compact-video-renderer');
-    }
-
-    // For tab items
-    if (selector.includes('tab')) {
-      return element.closest('yt-tab-shape, tp-yt-paper-tab');
     }
 
     return element;
@@ -100,13 +85,13 @@
     document.querySelectorAll('ytd-reel-item-renderer').forEach(el => el.remove());
   }
 
-  // Remove Shorts tab from channel pages
+  // Hide Shorts tab from channel pages (use display:none to preserve tab indices)
   function removeChannelShortsTab() {
     // Method 1: yt-tab-shape elements
     document.querySelectorAll('yt-tab-shape').forEach(tab => {
       const tabTitle = tab.getAttribute('tab-title');
       if (tabTitle === 'Shorts') {
-        tab.remove();
+        tab.style.display = 'none';
       }
     });
 
@@ -114,15 +99,7 @@
     document.querySelectorAll('tp-yt-paper-tab').forEach(tab => {
       const text = tab.textContent.trim();
       if (text === 'Shorts') {
-        tab.remove();
-      }
-    });
-
-    // Method 3: Check for links containing /shorts
-    document.querySelectorAll('[role="tab"]').forEach(tab => {
-      const link = tab.querySelector('a[href*="/@"][href*="/shorts"]');
-      if (link) {
-        tab.remove();
+        tab.style.display = 'none';
       }
     });
   }

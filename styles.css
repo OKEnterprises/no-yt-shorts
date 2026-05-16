@@ -9,16 +9,13 @@ ytd-mini-guide-entry-renderer:has(a[href="/shorts"]) {
   display: none !important;
 }
 
-/* 2. Shorts tab on channel pages */
+/* 2. Shorts tab on channel pages — use tab-title attribute only */
 yt-tab-shape[tab-title="Shorts"],
-tp-yt-paper-tab:has([title="Shorts"]),
-yt-tab-group-shape yt-tab-shape:has(a[href*="/shorts"]) {
+tp-yt-paper-tab:has([title="Shorts"]) {
   display: none !important;
 }
 
-/* 3. Shorts sections in subscription/home feed */
-ytd-rich-section-renderer:has(ytd-reel-shelf-renderer),
-ytd-rich-section-renderer:has([is-shorts]),
+/* 3. Shorts shelves in subscription/home feed — target shelves directly, not parent sections */
 ytd-reel-shelf-renderer,
 ytd-rich-shelf-renderer[is-shorts],
 ytd-rich-shelf-renderer:has([overlay-style="SHORTS"]) {
@@ -45,12 +42,6 @@ ytd-thumbnail-overlay-time-status-renderer[overlay-style="SHORTS"] {
 /* Hide Shorts from search results */
 ytd-video-renderer:has(a[href*="/shorts/"]),
 ytd-grid-video-renderer:has(a[href*="/shorts/"]) {
-  display: none !important;
-}
-
-/* Hide Shorts shelf in channel page */
-ytd-reel-shelf-renderer,
-ytd-channel-featured-content-renderer:has(ytd-reel-shelf-renderer) {
   display: none !important;
 }
 

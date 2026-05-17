@@ -29,8 +29,7 @@ ytd-reel-item-renderer {
 }
 
 /* 5. General Shorts elements */
-a[href="/shorts"],
-ytd-guide-section-renderer:has(a[title="Shorts"]) {
+a[href="/shorts"] {
   display: none !important;
 }
 

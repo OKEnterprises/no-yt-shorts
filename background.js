@@ -4,16 +4,16 @@
 (function() {
   'use strict';
 
-  // Pattern to match YouTube Shorts URLs
-  const SHORTS_PATTERN = /^https?:\/\/(www\.)?youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/;
+  // Pattern to match YouTube Shorts URLs on youtube.com and its subdomains
+  const SHORTS_PATTERN = /^https?:\/\/(?:[a-z0-9-]+\.)*youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/i;
 
   // Intercept requests to Shorts URLs and redirect to regular watch page
   browser.webRequest.onBeforeRequest.addListener(
     function(details) {
       const match = details.url.match(SHORTS_PATTERN);
 
-      if (match && match[2]) {
-        const videoId = match[2];
+      if (match && match[1]) {
+        const videoId = match[1];
         const redirectUrl = `https://www.youtube.com/watch?v=${videoId}`;
 
         console.log(`[No YT Shorts] Redirecting ${details.url} to ${redirectUrl}`);

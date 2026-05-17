@@ -10,9 +10,6 @@
     'ytd-guide-entry-renderer a[title="Shorts"]',
     'ytd-mini-guide-entry-renderer a[title="Shorts"]',
 
-    // Shorts section in navigation
-    'ytd-guide-section-renderer:has(a[title="Shorts"])',
-
     // 2. Shorts shelves in subscription/home feed — target shelves directly, NOT parent sections
     'ytd-reel-shelf-renderer',
     'ytd-rich-shelf-renderer[is-shorts]',
